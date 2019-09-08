@@ -2,8 +2,7 @@ package com.bada.dsa.practice.linkedlist;
 
 import com.bada.dsa.practice.node.DoubleNode;
 
-public class DoubleLinkedList {
-
+public class DoubleCircularLinkedList {
 	DoubleNode head, tail;
 	int size;
 
@@ -27,18 +26,24 @@ public class DoubleLinkedList {
 		System.out.println("Deleting node at location: " + location);
 		if (location == 0) { // delete from the first
 			if (size == 1) {
+				head.setPrev(null);
+				head.setNext(null);
 				head = tail = null;
 			} else {
 				head = head.getNext();
-				head.setPrev(null);
+				head.setPrev(head.getPrev());
+				tail.setNext(head);
 			}
 			size--;
 		} else if (location >= size) { // last node
 			if (size == 1) {
+				head.setPrev(null);
+				head.setNext(null);
 				head = tail = null;
 			} else {
 				tail = tail.getPrev();
-				tail.setNext(null);
+				tail.setNext(head);
+				head.setPrev(tail);
 			}
 			size--;
 		} else {
@@ -50,6 +55,53 @@ public class DoubleLinkedList {
 			tempNode.getNext().setPrev(tempNode);
 			size--;
 		}
+	}
+
+	void printHeadUsingTail() {
+		if (isLinkListCreated()) {
+			System.out.println("\n\nPrinting Tail...");
+			System.out.println(tail.getData());
+
+			System.out.println("\nPrinting Head using Head reference...");
+			System.out.println(head.getData());
+
+			System.out.println("\nPrinting Head using Tail reference...");
+			System.out.println(tail.getNext().getData());
+
+		} else {
+			System.out.println("Linked List does not exists");
+		}
+	}
+	
+	void printTailUsingHead() {
+		if (isLinkListCreated()) {
+			System.out.println("\n\nPrinting head...");
+			System.out.println(head.getData());
+
+			System.out.println("\nPrinting tail using tail reference...");
+			System.out.println(tail.getData());
+
+			System.out.println("\nPrinting tail using head reference...");
+			System.out.println(head.getPrev().getData());
+
+		} else {
+			System.out.println("Linked List does not exists");
+		}
+	}
+
+	void deleteLinkedList() {
+		if (!isLinkListCreated())
+			return;
+		DoubleNode temp = head;
+		for (int i = 0; i < size; i++) {
+			temp.setPrev(null);
+			temp = temp.getNext();
+		}
+		if (tail != null) {
+			tail.setNext(null);
+		}
+		head = tail = null;
+		System.out.println("Linked list deleted");
 	}
 
 	boolean searchNode(int value) {
@@ -69,18 +121,6 @@ public class DoubleLinkedList {
 
 	}
 
-	void deleteLinkedList() {
-		if (!isLinkListCreated())
-			return;
-		DoubleNode temp = head;
-		for (int i = 0; i < size; i++) {
-			temp.setPrev(null);
-			temp = temp.getNext();
-		}
-		head = tail = null;
-		System.out.println("Linked list deleted");
-	}
-
 	void insert(int value, int location) {
 		DoubleNode node = new DoubleNode();
 		node.setData(value);
@@ -91,13 +131,15 @@ public class DoubleLinkedList {
 		// first position
 		if (location == 0) {
 			node.setNext(head);
-			node.setPrev(null);
+			node.setPrev(tail);
 			head.setPrev(node);
+			tail.setNext(node);
 			head = node;
 		} else if (location >= size) { // last position
 			tail.setNext(node);
 			node.setPrev(tail);
-			node.setNext(null);
+			node.setNext(head);
+			head.setPrev(node);
 			tail = node;
 
 		} else { // any position
@@ -117,23 +159,6 @@ public class DoubleLinkedList {
 
 	}
 
-	void traverseReverse() {
-		if (isLinkListCreated()) {
-			System.out.print("Reverse Double Linked list: ");
-			DoubleNode tempNode = tail;
-			for (int i = 0; i < size; i++) {
-				System.out.print(tempNode.getData());
-				if (i != size - 1) {
-					System.out.print(" <- ");
-				}
-				tempNode = tempNode.getPrev();
-			}
-		} else {
-			System.out.println("Linked List does not exists");
-		}
-		System.out.println("\n");
-	}
-
 	void traverse() {
 		if (!isLinkListCreated()) {
 			return;
@@ -149,6 +174,23 @@ public class DoubleLinkedList {
 			tempNode = tempNode.getNext();
 		}
 		System.out.println();
+	}
+
+	void traverseReverse() {
+		if (isLinkListCreated()) {
+			System.out.print("Reverse Double Linked list: ");
+			DoubleNode tempNode = tail;
+			for (int i = 0; i < size; i++) {
+				System.out.print(tempNode.getData());
+				if (i != size - 1) {
+					System.out.print(" <- ");
+				}
+				tempNode = tempNode.getPrev();
+			}
+		} else {
+			System.out.println("Linked List does not exists");
+		}
+		System.out.println("\n");
 	}
 
 	private boolean isLinkListCreated() {

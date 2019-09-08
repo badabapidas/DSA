@@ -30,11 +30,11 @@ public class BinaryTreeByLinkedList {
 			BinaryNode presentNode = queue.remove();
 			if (presentNode.getLeft() == null) {
 				presentNode.setLeft(node);
-				System.out.println("Successfully inserted new node !");
+				System.out.println("Successfully inserted "+node.getValue()+" left of parent node "+presentNode.getValue()+"!");
 				break;
 			}else if (presentNode.getRight() == null) {
 				presentNode.setRight(node);
-				System.out.println("Successfully inserted new node !");
+				System.out.println("Successfully inserted "+node.getValue()+" right of parent node "+presentNode.getValue()+"!");
 				break;
 			} else {
 					queue.add(presentNode.getLeft());

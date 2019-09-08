@@ -4,10 +4,42 @@ public class LinkedListMain {
 
 	public static void main(String[] args) {
 
-		SingleLisnkeListMain();
+//		singleLinkedListMain();
+		doubleLinkedListMain();
 	}
 
-	private static void SingleLisnkeListMain() {
+	private static void doubleLinkedListMain() {
+//		DoubleLinkedList list = new DoubleLinkedList();
+		DoubleCircularLinkedList list = new DoubleCircularLinkedList();
+		list.createDoubleLinkedList(10);
+		list.insert(20, 1);
+		list.insert(30, 2);
+		list.insert(40, 3);
+		list.insert(50, 4);
+		list.insert(60, 5);
+		list.traverse();
+		list.traverseReverse();
+		list.searchNode(40);
+		list.searchNode(400);
+
+		list.traverse();
+		list.printHeadUsingTail();
+		
+		list.printTailUsingHead();
+
+		list.deleteNode(1);
+		list.traverse();
+		list.searchNode(20);
+
+		list.deleteNode(6);
+		list.traverse();
+		list.traverseReverse();
+
+		list.deleteLinkedList();
+
+	}
+
+	private static void singleLinkedListMain() {
 		SingleLinkedList list = new SingleLinkedList();
 //		SingleCircularLinkedList list = new SingleCircularLinkedList();
 

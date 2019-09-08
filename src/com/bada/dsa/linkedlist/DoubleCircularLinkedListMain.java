@@ -30,6 +30,7 @@ public class DoubleCircularLinkedListMain {
 		list.deletionOfNode(0);
 		System.out.println("After Deletion...");
 		list.traverseLinkedList();
+		list.printTailUsingHead();
 		
 		System.out.println("\n\nDeleting the node having location = 3: ");
 		System.out.println("Before Deletion...");

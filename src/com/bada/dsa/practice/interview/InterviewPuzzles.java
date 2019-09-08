@@ -1,4 +1,4 @@
-package com.bada.dsa.practice.node;
+package com.bada.dsa.practice.interview;
 
 import java.util.Random;
 
