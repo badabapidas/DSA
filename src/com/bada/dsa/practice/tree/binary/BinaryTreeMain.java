@@ -4,7 +4,15 @@ public class BinaryTreeMain {
 
 	public static void main(String[] args) {
 
-		binaryTreeUsingArrayMain();
+//		binaryTreeUsingArrayMain();
+		binaryTreeUsingLinkedList();
+	}
+
+	private static void binaryTreeUsingLinkedList() {
+		BinaryTreeByLinkedList list= new BinaryTreeByLinkedList();
+		list.insert(10);
+		list.insert(20);
+		list.insert(30);
 	}
 
 	private static void binaryTreeUsingArrayMain() {

@@ -11,7 +11,7 @@ public class BinaryTreeByArray {
 	}
 
 	boolean isTreeFull() {
-		if (lastUsedIndex == arr.length) {
+		if (lastUsedIndex == arr.length-1) {
 			System.out.println("Tree is full");
 			return true;
 		}
