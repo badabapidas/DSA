@@ -1,6 +1,7 @@
 package com.bada.dsa.graph.bfs;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 
 import com.bada.dsa.node.GraphNode;
 
@@ -28,10 +29,10 @@ public class BFSByLinkedList {
 	
 	//BFS internal method
 	void bfsVisit(GraphNode node) {
-		LinkedList<GraphNode>queue = new LinkedList<>();
+		Queue<GraphNode>queue = new LinkedList<>();
 		queue.add(node); //add source node to queue
 		while(!queue.isEmpty()) {
-			GraphNode presentNode = queue.remove(0);
+			GraphNode presentNode = queue.remove();
 			presentNode.setVisited(true);
 			System.out.print(presentNode.getName()+" ");
 			for(GraphNode neighbor: presentNode.getNeighbors()) { //for each neighbor of present node
