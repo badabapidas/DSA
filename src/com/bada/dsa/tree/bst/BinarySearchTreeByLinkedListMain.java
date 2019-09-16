@@ -9,11 +9,10 @@ public class BinarySearchTreeByLinkedListMain {
 		
 		//Inserting values in BST
 		System.out.println("Inserting 10 nodes in Tree");
-		tree.insert(100);
-		tree.insert(80);
-		tree.insert(70);
-		tree.insert(90);
-		tree.insert(50);
+		tree.insert(10);
+		tree.insert(20);
+		tree.insert(30);
+		tree.insert(25);
 		
 		
 		
