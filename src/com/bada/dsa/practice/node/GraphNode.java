@@ -12,6 +12,10 @@ public class GraphNode {
 		this.index = index;
 	}
 
+	public GraphNode(String name) {
+		this.name = name;
+	}
+
 	private boolean isVisited = false;
 
 	public String getName() {

@@ -1,0 +1,330 @@
+	Data Structure: is a way to 'organize data' in a way that enables it to be processed in an efficient time.
+	Algorithm: A set of rules to be followed to solve a problem
+
+	Physical DS: Array, Linked List (they are implemented standalone and these are physically present in the RAM)
+	Logical DS: Stack, Queue, Tree, Graph, hashing (these are dependent on the physical DS for their implementation)
+	
+	Linear DS: Array, Linked List, Stack, Queue
+	No Linear DS: Trees, Graphs
+
+@@@@@@@@@@@@@@ RECURSION ====>
+
+	Recursion vs Iteration:
+	Space efficient: Stack will store all the recursive call in its memory but for iteration it dont store anything in stack (So Iteration is better in case of Space efficiency)
+	Time efficient: for the very same reason Iteration is better in time efficiency as Recursion uses Stack memory where push, pop operations has to be aken care (So Iteration is better in case of Time efficiency)
+	Ease of code(to solve sub problems): Recursion is better then iteration.
+
+	When to use Recursion:
+	- When we can easily breakdown a problem into similar subproblems
+	- When we are ok with extra overhead (both time and space)
+	- When we need a quick working solution instead of efficient one
+
+	Practical use of Recursion?
+	- Stack, Tree, Sorting, Divide and Conquer, Dynamic programming etc
+
+@@@@@@@@@@@@@@ ALGORITHM RUN TIME ANALYSIS ===== >
+
+	 How much time will a given algorithm will take to run 
+	 - find the time complexitues for a iterative and recursive call for a simple prog (find the maximum no in an unsorted array, search a no in a soretd array using binary search)
+ 
+@@@@@@@@@@@@@@ ARRAY ===>
+	Live example: box of ties
+	 - how array stored in the memory? 1/2/3 dim? [ans: it will be always flat]
+	 - time complexities while declaring, instantiation, initializing phases of an array
+	 
+	 
+	 declaring => int[] arr; -> O(1)
+	 instantiation => arr = new int[3]; -> O(1)
+	 
+	 declaring => O(n)
+	 arr[0]=10;
+	 arr[1]=20;
+	 arr[2]=30;    
+	 
+	 // declaring, instantiation, initializing same time
+	 int arr[]=[10,20,30]; -> O(1)
+	 
+	 Practical use of 1D array: Hashtable
+	 Practical use of 2D array: Dynamic programming
+	 
+@@@@@@@@@@@@@@ LINKED LIST ===>
+
+	Time/Space complexities for all the oprerations(insert, traverse, delete, search) in the LL (Single, circular Single, Double, Circular Double)
+	Q. what is the time complexities to delete an entire Single LL (O(1): as if we make the head and tail null then GC will take care of removal of the unused refs) and double LL (O(n): as 
+	only head and tail ref removal dont work here as the double LL has refs in both the sides, So we have to travers to all the nodes and make any prev or next refs to null, then GC will take 
+	care the rest)
+
+	Q. Delete from last postion? 
+	A: SLL-> O(n), DLL -> O(1)
+
+	Q. TIme Complexity diff bet Arrays and Linked List for any operations? (eg. insert at kth position Array-> O(1), LL -> O(n)) 
+
+	Live examples:
+	- SLL:  Toy train
+	- CSLL: Card players play moves
+	- DLL: CDLL contains the logic of LL
+	- CDLL: ALT+SHIFT+TAB or ALT+TAB, Windows photo viewer
+
+
+@@@@@@@@@@@@@@ STACK ===>
+	Live example: bank line queue, bangles in a female handle, ack button in a browser, Undo functionality, Stack trace (LIFO)
+
+	Stack can be implemented in 2 ways, using array and LL (Q: implement Stack in a array or LL?)
+	operations: create, delete, push, pop, create, isEmpty, isFull, peek (Time/Space complexity for all)
+	
+
+@@@@@@@@@@@@@@ QUEUE ===>
+	Linear Queue has a problem; so QUEUE follow FIFO. So consider one QUEUE of length 5 contains 3 elms. So whenever we enqueue some it will add last and dequeue will be from first. so if we enqueue
+	2 elms and then dequeue 3 elms.	So now that queue will contain the elms 2. but if you again try to enqueue more elm it will throuh error by saying queue is full. but we can clearly see still 3 
+	place left as part of dequeue. So Linear queue has this limitation.
+	
+	So to remove this limitation Circular Queue came in to the picture.	
+
+	Q. Difference between queue.poll() and queue.remove()
+	A. both are similar whose pupose is to Retrieves and removes the head of the queue. remove() is differs from poll only in that it throws an exception if thisqueue is empty but 
+	poll() return null.
+
+@@@@@@@@@@@@@@ TREE ===>
+	Tree used to represent datas in a hierarchy form; Tree came to address some of the problems that LL has. The time complexities for searching, insert, deleting and so on to O(logn) fron O(n).
+
+	Binary Tree: A tree which can have only 0,1 and 2 childs. Binary Tree is the pre requisite for many advanced trees (BST, AVL ..)
+	Type of BT: 
+	Strict Binary Tree: if each node has either 2 or no children;
+	Full Binary tree: if each non leaf has 2 children and all the leaf nodes are at same level
+	Complete Binary Tree: if all the levels are completely filled except possibly the last level and the last level has all the keys as left as possible
+	
+	Q. Tree can be represent using array? LL? which LL? (yes, and doubly link list, as it has to store its left and right child refs)
+	Q. Represnstaion of BT using LL and array(left child: 2x, right child: 2x+1, where x is the parent cell no. for array 0 cell will be always empty as an standard as it increasing the math complexities).
+	Q. how many ways we can traverse a BT
+	A. Depth First Search (Preorder[Root, Left SubTree, Right SubTree], Inorder[L, Root, R], PostOrder[L, R, Root]), Breadth First Search(level Order [level by level traversing])
+		- Time/Space complexities for all the above mentioned traversals are O(n) with LL implementation
+		- In DFS LL uses stack where as BFS LL uses Queue to implement trees 
+	Q. For searching in the BT what traversal algo is most efficient?
+	A. Level Order. As level order use queue which is faster then the Preorder, PostOrder, Inorder which uses system queue.	
+
+@@@@@@@@@@@@@@ BS TREE ===>
+
+	the left subtree of a node has a key less than or equal to its parent node`s key
+	the right subtree of a node has a key greater than or equal to its parent node`s key
+	TIme/Space complexities for searching, Inserting, Deleting a node is O(logn) but traversing will still be O(n)
+	
+	Delete any node in BST can fall into 3 case
+	1. If the node is leaf node: as this node dont have any dependent node we can directly remove that node
+	2. If the node has a single child node, then before deleting the node we have to refer the child node to the parent node.
+	3. If the node has teo child nodes, then we have to copy the successor (least no in the right subtree) to that node and delete that node
+	
+@@@@@@@@@@@@@@ AVL TREE ===>
+
+	Depending on the incoming datas a binary search tree can get skewed and hence its performance starts going down. Instead of O(log n) for searching, inserting, deleting It can go upto O(n).
+	EX: Insert 10,20,30,40,50,60,70 in BST
+	An AVL tree is a balanced BST where the height of immediate subtrees of any node differs by at most one(also called balanced factor).
+	AVL tree make sure for this kind of scenarios tree is always balanced. AVL tree attempt to solve this problem by introducing concept called Rotation (LL, LR, RL, RR).	
+	
+	AVL tree follows the mentioned rotations to make a BST balanced. In a end 2 end flows, it checks all the rotations algo and perform those to make the tree balanced. So if the tree is broken for 
+	left height then we will apply LL or LR; If the tree broken for right height balance, then we will follow RR or RL based on the conditions in that subtree which node cause the issue whether the 
+	right one or the left one. So in short to apply this rotations we have to find the height balance between left and right subtree. Then again have to find which actually cause the real balance 
+	issue to apply the actual rotation rule.
+	
+	
+	IN the case of deletion AVL follows BST deletion algo where rotations not needed.
+	
+	So BST vs AVL: in searching, inserting, deleting the time complexity reduced from O(n) to O(logn);
+	
+@@@@@@@@@@@@@@ Binary HEAP ===>	
+	Binary heap is a binary tree with some special properties.
+	Heap property:
+		value of any given node must be <= value of its children(Min-heap) 
+		value of any given node must be >= value of its children(Max-heap)
+	Complete tree: This make Binary Heap ideal candidate for Array Implementation
+	
+	There are cases when we want to find min/max number among set of numbers in log(n) time. Also we want to make sure that inserting addiional no does not take more than O(log n) time. 
+	
+	Practical use: Prim`s Algorithm, Heap Sort, Priority Queue 
+	Types: 
+	Min-Heap: If the value of each node is less than or equal to value of both of its children
+	Max-Heap: If the value of each node is greater than or equal to value of both of its children		
+	
+	Binary heap is needed to find the min/max no among all the given sets in O(log n) and inserting new node should not break the complexities.
+	
+	So Binary heap can be implemented in 2 ways, using array and reference. It is not recommended to impl using ref as the time complexities can be incresed from logn to n.
+	In Binary Heap, we can extract the head of heap which will be either minimum incase of mi-heap or maximum in case of max-heap; So at the time of inserting or deleting we have to maintan the heap property. or else we have to swap the node with its parent till
+	the head to maintan it. So if you want to extract the head, the rule is to copy the last elm to head then keep swaping till the heap property maintain.
+	
+@@@@@@@@@@@@@@ TRIE ===>		
+	It is a search tree, which is typically used to store/search strings in space/time effiicient way
+	In it any node can store non repeatitive multiple character/s
+	Also every node stores link of next character of the strings
+	Also, every node keeps a track of 'end of String'
+	
+	Why leasrn Trie?
+	Used to solve many standard prolems in efficient ways
+	- Spelling Checker
+	- Auto Complete String
+	- Etc
+	
+	
+@@@@@@@@@@@@@@ HASHING ===>
+	Hashing is a method of sorting and indexing data. The idea behind hashing is to allow large amounts of data to be indexed using keys commonly created by formulas.
+	
+	Why we need Hashing?
+	So compare to all the data structure lets see the time complexity for search operation is taken as
+	Array: O(log n ) // if the array is sorted or else O(n)
+	LL: O(n)
+	Tree: O(log n) // BST
+	Hashing: O(1)/O(n) // O(1) in best case scneario
+	So hashing give us a hope that search complexities can be reduced to O(1).
+	
+	Practical use of hashing:
+	- Password verification
+	- File systems: File path is mapped to physical location on disk
+	
+	Hashing is all depend on the hash function. SO if the hash function is able to convert any key to unique hash value then the searching can be of O(1) or else the same hash function can turn the 
+	searching to O(n)
+	
+	
+@@@@@@@@@@@@@@ SORTING ===>	
+	Algortihms
+	
+	$$$ Bubble Sort ->
+	Repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order
+	
+	Time complexity: O(n2) // as there will be 2 loops for n; outer loop to find the maximum no filing from right side (if ascending order or vice versa) and the inner loop is to do a check and swap 
+	the adjacent nodes
+	Space complexity: O(1) // as this sorting in inplace sorting so no extra space needed
+	
+	When to use:
+	- When input is already sorted
+	- Space is a concern
+	- Easy to implement
+	
+	When to Avoid:
+	- Average case time complexity is poor
+	
+	
+	$$$ Selection Sort ->
+	The Selection sort algorithm is based on the idea of finding the minimum or maximum element in an unsorted array and then putting it in the correct position in a sorted array.
+	
+	Time complexity: O(n2) // as there will be 2 loops for n;
+	Space complexity: O(1) // as this sorting in inplace sorting so no extra space needed
+	
+	When to use:
+	- When we dont have any additional memory
+	- Easy to implement
+	
+	When to Avoid:
+	- When the complexity is a concern
+	
+	$$$ Insertion Sort ->
+	In Insertion sort algortihm we divide the given array into 2 parts ie sorted and unsorted array
+	Then from unsorted array we pick the first element and find its correct position in sorted array
+	Repeat till Unsorted array is not empty
+	
+	Time complexity: O(n2) // as there will be 2 loops for n;
+	Space complexity: O(1)
+	
+	When to use:
+	- No extra space
+	- Easy to implement
+	- Best when we ave continuos inflow of numbers and we want to keep the list sorted
+	
+	When to Avoid:
+	- Average case is bad.
+	
+	$$$ Bucket Sort ->
+	In Bucket sort, all the no will be distributed in some buckets. No of bucket creation and how the distribution will happen for those number will be based on some formulas which might differ place
+	to place; So once the no succesfuly distributed in all the buckets, sorting will aplly individually in all the bukcet (any sorting technique can be used to sort). once the bucket sorts done then all the buckets 
+	will be merged to get the totat sorted numbers.
+	
+	Time Complexity: O(n)+O(n logn)+ O(n) = O(n logn) // first O(n) for the loop; O(n logn) for the sorting algo considering we used quick sort;last O(n) is for concatening the buckets
+	Space Complexity: O(n) // for buckets we are creating n no of space
+	
+	When to use:
+	- when the input is uniformly distributed over a range; if the inputs are not uniform then it might be the case all the inputs are fall into one bucket and the remaining buckets are empty. So in this case the whole 
+	bucket concept will be waste
+	
+	When to Avoid:
+	- When space is a concern as we know in bucket sort the space complexity is O(n)
+	
+	$$$ Merge Sort ->
+	Merge sort is a divide and conquer algorithm. It divides input array into two halves recursively until they become too small to be broken further. Then each of the broken piece are merged together to
+	to get the final answer.
+	
+	TIme complexity: O(n logn)
+	Space Complexity: O(n)
+	
+	When to use:
+	- When you need a stable sort
+	- 	When average expected time is O(n logn) 
+	
+	When to Avoid:
+	when there is a space concern
+	
+	Usage: Java 6 and earlier version used to use merge sort for sorting in its library. from Java 7 its changed.
+	
+	
+	$$$ Quick Sort ->
+	Quick sort is a divide and conquer algorithm. 
+	At each step it finds Pivot and then makes sure that all the smaller elements are left of Pivot and all bigger elemnets are Right of Pivot.
+	It does this recursively until the entire array is sorted
+	Unlike merge sort it does not requires any external space
+	
+	TIme complexity: O(n logn)
+	Space Complexity: O(n)
+	
+	When to use:
+	- When average expected time is O(n logn) 
+	
+	When to Avoid:
+	- when there is a space concern
+	- when stable sort is required
+	
+	Usage: C#, Java 7, Android
+	
+	$$$ Heap Sort ->
+	Heap Sort works by first organizing the data to be sorted into a special type of binary tree called a heap
+	It then removes the topmost item (te largest/smallest) and inserts it in current Array. It keeps doing the same until Binary Heap is not empty.
+	Is best suited with Array. Does not works best with Linked list.
+	
+	TIme complexity: O(n logn)
+	Space Complexity: O(1)
+	
+	When to use:
+	- when there is a space concern
+	
+	When to Avoid:
+	- when stable sort is required
+	
+	
+@@@@@@@@@@@@@@ GRAPH ===>		
+
+	Graph is a pair of sets(V,E), where V is the set od vertices,and E is the set of edges, connecting the pair of vertices.
+	Practical usage: Shortest path between cities; Tree can not be used in this case as because of its non cyclic nature;
+	
+	For Search there are two technique BFS and DFS
+	
+	$$$ BFS: same like level order traversal in a tree. From one vertices it will traverse all the adjacent vertices and repeating the same for all the vertices. BFS use queue for traversal.
+	Time complexity: O(V+E)
+	Space complexity: O(V+E)
+	
+	BFS can be implemented using Adjacency matrix (if the graph is coplete or nearly complete) and Adjacency List (if there are very few edges present in the graph).
+	
+	$$$ DFS: It will start with a source node and will go as deep as possible using the edges till it reaches the bottom before back tracking.
+	DFS use Stack in it implementation.
+	Time complexity: O(V+E)
+	Space complexity: O(V+E)
+	
+	So when we know the target we are looking for is in a deep position use DFS, when we know the target is closer to the root elm then use BFS.
+	
+	One corner case for BFS and DFS is disconnected graphs. These algo dont works for disconnected graphs as some vertices wont have any edges to traverse.
+
+	$$$ Topological sort: Topological sort sorts given actions in such a way that if there is a dependency of one action on another, then the dependent action always comes later then its parent action
+	
+	Time complexity: O(V+E)
+	Space complexity: O(E)
+
+
+
+
+
+
+
